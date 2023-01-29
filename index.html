@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <title>홀짝</title>
+    <style>
+        body {
+            margin: 0;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #5D3891;
+            font-family: 'Do Hyeon', sans-serif;
+            color: #E8E2E2;
+        }
+        main {
+            width: 100vw;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        .btn-wrap {
+            display: flex;
+            justify-content: center;
+        }
+        .btn {
+            margin: 20px;
+            width: 200px;
+            height: 200px;
+            background-color: #F99417;
+            font-size: 3rem;
+            line-height: 200px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            color: #e33030;
+            transition: color .3s;
+        }
+        p {
+            font-size: 2rem;
+        } 
+    </style>
+</head>
+<body>
+
+    <main>
+        <h1>홀일까요? 짝일까요?</h1>
+        <div class="btn-wrap">
+            <div id="odd" class="btn">홀</div>
+            <div id="even" class="btn">짝</div>
+        </div>
+        <p id="answer"></p>
+    </main>
+
+    <script>
+        const odd = document.querySelector('#odd');
+        const even = document.querySelector('#even');
+        const answer = document.querySelector('#answer');
+        const btnWrap = document.querySelector('.btn-wrap');
+
+        // random
+        let randomNum = Math.floor((Math.random() * 100) + 1);
+
+        // oddEven click event
+        function oddEven(oddOrEven, num, text1, text2) {
+            oddOrEven.addEventListener('click', function(){
+                randomNum % 2 === num ? answer.innerText = `숫자는 ${randomNum}, ${text1}이 맞습니다.` : answer.innerText = `숫자는 ${randomNum}, 이런.. ${text2}이었습니다.`;
+                btnWrap.style.display = 'none';
+            })
+        }
+
+        oddEven(odd, 1, '홀', '짝')
+        oddEven(even, 0, '짝', '홀')
+        
+    </script>
+</body>
+</html>
